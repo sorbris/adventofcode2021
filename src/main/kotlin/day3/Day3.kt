@@ -1,8 +1,5 @@
 package day3
 
-import java.util.*
-
-import kotlin.collections.ArrayList
 import kotlin.math.pow
 
 object Day3 {
