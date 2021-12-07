@@ -60,17 +60,7 @@ data class Point(var x: Int, var y: Int)
 
 
 sealed class Command(val amount: Int) {
-    abstract fun transform(point: Point): Point
-
-    class Forward(amount: Int) : Command(amount) {
-        override fun transform(point: Point) = point.apply { x += amount }
-    }
-
-    class Down(amount: Int) : Command(amount) {
-        override fun transform(point: Point) = point.apply { y += amount }
-    }
-
-    class Up(amount: Int) : Command(amount) {
-        override fun transform(point: Point) = point.apply { y -= amount }
-    }
+    class Forward(amount: Int) : Command(amount)
+    class Down(amount: Int) : Command(amount)
+    class Up(amount: Int) : Command(amount)
 }

@@ -42,8 +42,7 @@ object Day7 {
         crabs.forEach { crab ->
             for (v in min .. max) {
                 val steps = abs(v - crab)
-
-                values[v - min] += stepToFuel(steps)
+                values[v - min] += (steps*(steps+1))/2
             }
         }
 
@@ -51,13 +50,5 @@ object Day7 {
             min(acc, i)
         }
         println("min fuel: $fuel")
-    }
-
-    fun stepToFuel(steps: Int): Int {
-        var sum = 0
-        for (i in steps downTo 1) {
-            sum += i
-        }
-        return sum
     }
 }
