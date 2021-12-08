@@ -1,4 +1,4 @@
 fun main(args: Array<String>) {
 
-    day7.Day7.problem2()
+    day8.Day8.problem2()
 }
