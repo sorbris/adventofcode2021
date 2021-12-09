@@ -3,14 +3,12 @@ package day8
 object Day8 {
     private val UNIQUE_DIGIT_LENS = intArrayOf(2,3,4,7)
     fun problem1() {
-        var count = 0
-        val content = javaClass.getResource("/day8.txt").readText().lineSequence()
-            .map { it.split("|").last().trim().split(" ").forEach { if (it.length in UNIQUE_DIGIT_LENS) count++ } }.toList()
+        val count = javaClass.getResource("/day8.txt").readText().lineSequence()
+            .map { it.split("|").last().trim().split(" ") }.map { it.count { s -> s.length in UNIQUE_DIGIT_LENS } }.sum()
         println("count $count")
     }
 
     fun problem2() {
-
         val content = javaClass.getResource("/day8.txt").readText().lines()
         val sum = content.sumOf { getOutput(it) }
         println(sum)
@@ -33,10 +31,9 @@ object Day8 {
     }
 
     fun parseDigit(input: List<String>) : List<Digit> {
-        val digits = mutableListOf<Digit>()
         val sorted = input.sortedWith { o1, o2 -> o1.length.compareTo(o2.length) }.toMutableList()
 
-        val eight = Digit(sorted.removeLast(), 8)
+        val eight = Digit(sorted.last(), 8)
         val four = Digit(sorted.removeAt(2), 4)
         val seven = Digit(sorted.removeAt(1), 7)
         val one = Digit(sorted.removeFirst(), 1)
@@ -57,7 +54,5 @@ object Day8 {
         return listOf(zero, one, two, three, four, five, six, seven, eight, nine)
     }
 
-    class Digit(val signals: String, val value: Int) {
-
-    }
+    class Digit(val signals: String, val value: Int)
 }

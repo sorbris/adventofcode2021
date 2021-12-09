@@ -1,6 +1,6 @@
 package day3
 
-import kotlin.math.pow
+import utils.parseBinary
 
 object Day3 {
 
@@ -62,8 +62,8 @@ object Day3 {
 
         println("orating = $orating")
         println("co2rating = $co2rating")
-        val co2dec = co2rating.toDecimal()
-        val odec = orating.toDecimal()
+        val co2dec = co2rating.parseBinary()
+        val odec = orating.parseBinary()
         println("orating decimal value = $odec")
         println("co2rating decimal value = $co2dec")
         println("rating: ${odec * co2dec}")
@@ -115,15 +115,4 @@ class Counter(size: Int) {
 
         return gamma to epsilon
     }
-}
-
-fun String.toDecimal(): Int {
-    var sum = 0
-    this.reversed().forEachIndexed { index, c ->
-        val positionValue = 2.0.pow(index.toDouble()).toInt()
-        val digit = c.digitToInt()
-        if (digit != 0 && digit != 1) throw RuntimeException("nope")
-        sum += digit*positionValue
-    }
-    return sum
 }
