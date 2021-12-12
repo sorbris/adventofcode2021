@@ -22,8 +22,7 @@ object Day10 {
 
     fun findError(input: String): Int {
         val expected = ArrayDeque<Char>()
-        for (i in input.indices) {
-            val c = input[i]
+        for (c in input) {
             when (c) {
                 '<' -> expected.add('>')
                 '(' -> expected.add(')')
@@ -42,8 +41,7 @@ object Day10 {
 
     fun findError2(input: String): Long {
         val expected = ArrayDeque<Char>()
-        for (i in input.indices) {
-            val c = input[i]
+        for (c in input) {
             when (c) {
                 '<' -> expected.add('>')
                 '(' -> expected.add(')')
@@ -57,12 +55,10 @@ object Day10 {
             }
         }
 
-        var c = expected.removeLastOrNull()
         var sum = 0L
-        while (c != null) {
+        expected.asReversed().forEach { c ->
             sum *= 5
             sum += points2[c]!!
-            c = expected.removeLastOrNull()
         }
         return sum
     }
