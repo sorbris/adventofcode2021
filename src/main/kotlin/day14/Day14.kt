@@ -40,7 +40,7 @@ object Day14 {
         lines.drop(2).forEach {
             val p = it.split(" -> ")
             if (p.last().length != 1) throw IllegalStateException("wtf")
-            rules[p.first()] = p.last().toCharArray().first()
+            rules[p.first()] = p.last().first()
         }
         val result = LongArray('Z' - 'A')
         polymer.windowed(2).forEach {
@@ -75,8 +75,8 @@ object Day14 {
         val c = rules[pair]!!
         val result = LongArray('Z' - 'A')
         if (step < 40) {
-            val l = checkPair("${pair.first()}$c", step + 1, rules)
-            val r = checkPair("$c${pair.last()}", step + 1, rules)
+            val l = checkPair(buildString { append(pair.first());append(c) }, step + 1, rules)
+            val r = checkPair(buildString { append(c);append(pair.last()) }, step + 1, rules)
             for (i in result.indices) {
                 result[i] = l[i] + r[i]
             }
